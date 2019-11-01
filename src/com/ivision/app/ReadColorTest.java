@@ -71,9 +71,9 @@ public class ReadColorTest {
 	public static void main(String[] args) throws Exception {
 		int x = 0;
 		ReadColorTest rc = new ReadColorTest();
-		x = rc.getScreenPixel(100, 345);
+		x = rc.getScreenPixel(45, 234);
 		System.out.println(x + " - ");
-		rc.getImagePixel("C:\\Users\\wanglei\\Desktop\\demo\\image\\アンケート.JPG");
+		rc.getImagePixel("C:\\Users\\wanglei\\Desktop\\demo\\image\\SKM_C454e19103013150_0001.jpg");
 	}
  
 }
