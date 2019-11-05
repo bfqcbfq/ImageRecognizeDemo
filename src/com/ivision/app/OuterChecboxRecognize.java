@@ -8,10 +8,10 @@ import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 
-public class ImageReaderTest {
-
+public class OuterChecboxRecognize {
+	
 	public static void main(String[] args) {
-
+		
 		int rgbR;
 		int rgbG;
 		int rgbB;
@@ -43,6 +43,7 @@ public class ImageReaderTest {
 		
 		//待处理的图片
 		String filePath = "C:\\Users\\wanglei\\Desktop\\demo\\image\\SKM_C454e19103013150_0002.jpg";
+		
 
 		try {
 			
@@ -249,7 +250,7 @@ public class ImageReaderTest {
 	
 	private static BufferedImage loadImage(InputStream in) throws IOException {
 		return ImageIO.read(in);
+		
 	}
-
 
 }
