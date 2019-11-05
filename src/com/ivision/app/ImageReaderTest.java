@@ -210,7 +210,7 @@ public class ImageReaderTest {
 			System.out.println("未被勾选的像素数为："+unSelectedPixelCount);
 
 			
-			//ImageIO.write(image, "jpg", new File("C:\\Users\\wanglei\\Desktop\\demo\\image\\outImage\\demo.jpg"));
+			//ImageIO.write(image, "jpg", new File("C:\\Users\\wanglei\\Desktop\\demo\\image\\outImage\\demo01.jpg"));
 			
 			//System.out.println("导出成功");
 
