@@ -94,15 +94,15 @@ public class OuterChecboxRecognize {
 				
 				
 				
-				int previousRgbR2 = rgbList.get(i).getRgbR();
-				int previousRgbG2 = rgbList.get(i).getRgbG();
-				int previousRgbB2 = rgbList.get(i).getRgbB();
+				double previousRgbR2 = rgbList.get(i).getRgbR();
+				double previousRgbG2 = rgbList.get(i).getRgbG();
+				double previousRgbB2 = rgbList.get(i).getRgbB();
 				
-				for(int j =i+1; j<rgbList.size();j++) {
+				for(int j =i+1; j<=rgbList.size();j++) {
 					
-					int nextRgbR2 = rgbList.get(j).getRgbR();
-					int nextRgbG2 = rgbList.get(j).getRgbR();
-					int nextRgbB2 = rgbList.get(j).getRgbB();
+					double nextRgbR2 = rgbList.get(j).getRgbR();
+					double nextRgbG2 = rgbList.get(j).getRgbR();
+					double nextRgbB2 = rgbList.get(j).getRgbB();
 					
 					if((previousRgbR2/nextRgbR2)>1.05) {
 						
