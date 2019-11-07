@@ -2,11 +2,11 @@ package com.ivision.app.domain;
 
 public class Rgb {
 	
-	private int rgbR;
+	private double rgbR;
 	
-	private int rgbG;
+	private double rgbG;
 	
-	private int rgbB;
+	private double rgbB;
 
 	
 	
@@ -17,7 +17,7 @@ public class Rgb {
 
 
 
-	public Rgb(int rgbR, int rgbG, int rgbB) {
+	public Rgb(double rgbR, double rgbG, double rgbB) {
 		super();
 		this.rgbR = rgbR;
 		this.rgbG = rgbG;
@@ -26,37 +26,37 @@ public class Rgb {
 
 
 
-	public int getRgbR() {
+	public double getRgbR() {
 		return rgbR;
 	}
 
 
 
-	public void setRgbR(int rgbR) {
+	public void setRgbR(double rgbR) {
 		this.rgbR = rgbR;
 	}
 
 
 
-	public int getRgbG() {
+	public double getRgbG() {
 		return rgbG;
 	}
 
 
 
-	public void setRgbG(int rgbG) {
+	public void setRgbG(double rgbG) {
 		this.rgbG = rgbG;
 	}
 
 
 
-	public int getRgbB() {
+	public double getRgbB() {
 		return rgbB;
 	}
 
 
 
-	public void setRgbB(int rgbB) {
+	public void setRgbB(double rgbB) {
 		this.rgbB = rgbB;
 	}
 
@@ -66,7 +66,46 @@ public class Rgb {
 	public String toString() {
 		return "Rgb [rgbR=" + rgbR + ", rgbG=" + rgbG + ", rgbB=" + rgbB + "]";
 	}
+
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		long temp;
+		temp = Double.doubleToLongBits(rgbB);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(rgbG);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(rgbR);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		return result;
+	}
+
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Rgb other = (Rgb) obj;
+		if (Double.doubleToLongBits(rgbB) != Double.doubleToLongBits(other.rgbB))
+			return false;
+		if (Double.doubleToLongBits(rgbG) != Double.doubleToLongBits(other.rgbG))
+			return false;
+		if (Double.doubleToLongBits(rgbR) != Double.doubleToLongBits(other.rgbR))
+			return false;
+		return true;
+	}
 	
+	
+	
+
 	
 
 }
