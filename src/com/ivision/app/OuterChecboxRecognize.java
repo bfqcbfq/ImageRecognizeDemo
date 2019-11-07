@@ -6,8 +6,10 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.imageio.ImageIO;
@@ -21,6 +23,10 @@ public class OuterChecboxRecognize {
 		int rgbR;
 		int rgbG;
 		int rgbB;
+		
+		Rgb rgb =null;
+		
+		Set<Rgb> rgbSet = null;
 
 		// 待处理的图片
 		String filePath = "C:\\Users\\wanglei\\Desktop\\demo\\image\\SKM_C454e19103013150_0003.jpg";
@@ -38,101 +44,104 @@ public class OuterChecboxRecognize {
 			
 			List<Rgb> rgbList = new ArrayList<Rgb>();
 			
-			Set<Rgb> rgbSet = new HashSet<Rgb>();
+			//Set<Rgb> rgbSet =new HashSet<Rgb>();
 			
-			HashSet<Integer> hashCodeSet = new HashSet<>();
 			
-			Rgb rgb = new Rgb();
-//			
-//			Set<Object> rgbRSet = new HashSet<>();
-//			
-//			Set<Object> rgbGSet = new HashSet<>();
-//			
-//			Set<Object> rgbBSet = new HashSet<>();
-//			
-//			Map<Integer, HashSet<Rgb>> rgbMap = new HashMap<>();
+			
+			
+			Set<Object> rgbGSet = new HashSet<>();
+			
+			Set<Object> rgbBSet = new HashSet<>();
+			
+			List<Object> rgbRList = new ArrayList<>();
+			
+			Map<Integer, HashSet<Rgb>> rgbMap = new HashMap<>();
 
 	
 			
 			
-			for (int m = 750; m < 800; m++) {
+			rgbSet =new HashSet<Rgb>();
+			for (int m = 0; m < width; m++) {
 
-				for (int n = 300; n < 350 ; n++) {
+				
+				for (int n = 1853; n < height ; n++) {
 
 					int pixelX = image.getRGB(m, n);
-
+					rgb = new Rgb();
 					// 下面三行代码将一个数字转换为RGB数字
 					rgbR = (pixelX & 0xff0000) >> 16;
 					rgbG = (pixelX & 0xff00) >> 8;
 					rgbB = (pixelX & 0xff);
 					
+					
 					rgb.setRgbR(rgbR);
 					rgb.setRgbG(rgbG);
 					rgb.setRgbB(rgbB);
+					
 					count++;
 					
-					rgbList.add(rgb);
+					rgbSet.add(rgb);
 					
 					//System.out.println("第"+count+"个像素点的坐标为："+"(" + m + "," + n + ")"+"RGB"+":(" + rgbR + "," + rgbG + "," + rgbB + ")");
-
-					//x(1+0.05)=y
-					
-					//y/x=1.05;
-					
-					//rgbSet.add(rgb);
-					
-					
-					//System.out.println(rgbSet.size());
 					
 				}
 			}
-			//System.out.println(rgbList.size());
+			System.out.println(rgbSet);
+			rgbList.addAll(rgbSet);
+			System.out.println(rgbList.size());
 			int diffRCount = 0;
 			int diffGCount = 0;
 			int diffBCount = 0;
+			boolean rgbRFirstFlag  = true;
 			for(int i =0; i<rgbList.size()-1;i++) {
 				
 				
 				
-				int previousRgbR2 = rgbList.get(i).getRgbR();
-				int previousRgbG2 = rgbList.get(i).getRgbG();
-				int previousRgbB2 = rgbList.get(i).getRgbB();
+				double previousRgbR2 = 0;;
+				double previousRgbG2 = 0;
+				double previousRgbB2 = 0;
+				if(rgbRFirstFlag) {
+					
+					 previousRgbR2  = rgbList.get(i).getRgbR();
+				
+					
+					 previousRgbG2 = rgbList.get(i).getRgbG();
+				
+					
+					 previousRgbB2 = rgbList.get(i).getRgbB();
+				}
 				
 				for(int j =i+1; j<rgbList.size();j++) {
 					
-					int nextRgbR2 = rgbList.get(j).getRgbR();
-					int nextRgbG2 = rgbList.get(j).getRgbR();
-					int nextRgbB2 = rgbList.get(j).getRgbB();
+					double nextRgbR2 = rgbList.get(j).getRgbR();
 					
-					if((previousRgbR2/nextRgbR2)>1.05) {
+					double nextRgbG2 = rgbList.get(j).getRgbR();
+					
+					double nextRgbB2 = rgbList.get(j).getRgbB();
+					
+					
+					if((previousRgbR2/nextRgbR2)>1.5) {
 						
 						diffRCount++;
-					}else if((previousRgbG2/nextRgbG2)>1.05){
-						diffGCount++;
+					}else if((previousRgbG2/nextRgbG2)>1.5){
 						
-					}else if((previousRgbB2/nextRgbB2)>1.15) {
+						diffGCount++;
+					}else if((previousRgbB2/nextRgbB2)>1.5) {
 						
 						diffBCount++;
 					}
 				}
 				
-				
-				
 			}
 			
-			System.out.println(diffRCount);
-			System.out.println(diffGCount);
-			System.out.println(diffBCount);
+			System.out.println("R色差大于5%的像素有"+diffRCount+"个");
 			
 			
+			System.out.println("G色差大于5%的像素有"+diffGCount+"个");
 			
 			
-			//rgbSet.addAll(rgbList);
+			System.out.println("B色差大于5%的像素有"+diffBCount+"个");
 			
-			//rgbList = new ArrayList<>(new LinkedHashSet<>(rgbList));
-			
-			//System.out.println(rgbList);
-			//System.out.println(rgbSet);
 			
 			System.out.println("页面共有"+count+"个像素点");
 

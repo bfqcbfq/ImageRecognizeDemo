@@ -201,6 +201,7 @@ public class ImageReaderTest {
 					}
 
 					// image.setRGB(m, n, -65281);
+					
 
 				}
 
